@@ -1,0 +1,44 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" class="border-0 bg-light">
+                  <div class="p-2 text-uppercase">Order</div>
+                </th>
+                <th scope="col" class="border-0 bg-light">
+                  <div class="py-2 text-uppercase">Date</div>
+                </th>
+                <th scope="col" class="border-0 bg-light">
+                  <div class="py-2 text-uppercase">Total</div>
+                </th>
+                <th scope="col" class="border-0 bg-light">
+                  <div class="py-2 text-uppercase">Status</div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of orders" routerLink="/orders/{{order.id}}">
+                <th class="align-middle">
+                    <strong class="font-weight-bold px-2"> # {{ order.id }}</strong>
+                </th>
+                <td class="align-middle">
+                  <span>{{order.orderDate | date: "medium"}}</span>
+                </td>
+                <td class="align-middle">
+                  <span>{{ order.total | currency}}</span>
+                </td>
+                <td class="align-middle">
+                  <span>{{order.status}}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
