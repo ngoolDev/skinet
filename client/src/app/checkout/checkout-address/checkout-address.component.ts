@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { AccountService } from 'src/app/account/account.service';
 import { ToastrService } from 'ngx-toastr';
 import { error } from 'protractor';
+import { IAddress } from 'src/app/shared/models/address';
 
 @Component({
   selector: 'app-checkout-address',
@@ -22,11 +23,14 @@ export class CheckoutAddressComponent implements OnInit {
   saveUserAddress() {
     this.accountService
       .updateUserAddress(this.checkoutForm.get('addressForm').value)
-      .subscribe(() => {
-        this.toastr.success('Address Saved');
-      }, error => {
-        this.toastr.error(error.message);
-        console.log(error);
-      });
+      .subscribe(
+        (address: IAddress) => {
+          this.toastr.success('Address Saved');
+          this.checkoutForm.get('addressForm').reset(address);
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 }
